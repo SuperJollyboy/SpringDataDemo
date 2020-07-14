@@ -1,15 +1,12 @@
 package com.gl.springDataDemo;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
+import org.assertj.core.util.Lists;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -58,23 +55,61 @@ public class UserManagementAppApplicationTests {
 		
 	}
 
+    
+
+    @Test
+	 public void testfindAllUsers() {
+    	//Set-up Data
+    	User user = new User();
+	 	user.setId(2L);
+	 	user.setFirstName("Amit");
+	 	user.setLastName("Ganguly");		 	
+	 	user.setGender("M");
+	 	user.setAddress("Vashi");
+	 	
+	 	User user1 = new User();
+	 	user1.setId(2L);
+	 	user1.setFirstName("Amit1");
+	 	user1.setLastName("Ganguly1");		 	
+	 	user1.setGender("M");
+	 	user1.setAddress("Vashi_1");
+	 	
+    	List<User> userList = Lists.newArrayList();
+    	
+    	userList.add(user);
+    	userList.add(user1);
+    	
+    	//Stubbing the data
+	 	Mockito.when(repository.findAll()).thenReturn(userList);
+	 	
+	 	//Service Call
+        List<User> userListResponse = service.findAllUsers();
+        
+        //Data validation
+        Assert.assertEquals(userList.size(), userListResponse.size());
+      
+        
 	
-	
-	
-	
+    }
+    
 	 @Test
 	 public void testfindUserByName() {
-	    	
+	    	//set-up data
 		 	User user = new User();
-
 		 	user.setId(2L);
 		 	user.setFirstName("Amit");
 		 	user.setLastName("Ganguly");		 	
 		 	user.setGender("M");
 		 	user.setAddress("Vashi");
 		 	
-		 	Mockito.when(repository.findById(2L).thenReturn(user);
+		 	//Stubbing the data
+		 	Mockito.when(repository.findById(2L)).thenReturn(Optional.of(user));
+		 	
+		 	//Service Call
 	        User newuser = service.findUserByName(2L);
+	        
+	        //Data validation
+	        Assert.assertEquals(user, newuser);
 	        System.out.println(newuser.toString());
 	        
 	        
