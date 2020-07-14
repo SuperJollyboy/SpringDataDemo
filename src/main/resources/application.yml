@@ -1,0 +1,14 @@
+server:
+    port: 8080
+    servlet:
+      context-path: /springDataDemo
+spring:
+  application:
+    name: spring-data-demo
+
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/amit?useSSL=false
+    username: root
+    password: 12345
+    driver-class-name: com.mysql.cj.jdbc.Driver
