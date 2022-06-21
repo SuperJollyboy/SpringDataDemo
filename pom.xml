@@ -21,7 +21,7 @@
 	  	<swagger-annotations.version>1.5.21</swagger-annotations.version>
 	  	<swagger-models.version>1.5.21</swagger-models.version>
 	  	
-	  			    <mysql.version>8.0.20</mysql.version>
+	  			    <mysql.version>8.0.28</mysql.version>
 	  	
 	</properties>
 
